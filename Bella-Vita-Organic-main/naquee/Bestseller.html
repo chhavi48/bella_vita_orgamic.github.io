@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            display: grid;
+            width: 70%;
+            grid-template-columns: repeat(4,1fr);
+            /* grid-template-rows: auto; */
+            gap: 20px;
+            margin-left: 50px;
+            float: right;
+            /* border: 2px solid blue; */
+            padding-left: 10px;
+            
+            
+            
+        }
+        #container>div{
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            /* border: 2px solid red; */
+            border-radius: 10px;
+            width: 100%;
+            /* height: 400px; */
+            /* font-size: 15px; */
+            
+
+        }
+        #pic{
+            width: 80%;
+        }
+        .price{
+            /* border: 3px solid pink; */
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            font-size: 16px;
+        }
+        #image1{
+            width: 90%;
+        }
+        #image1{
+            width: 80%;
+            height: 50px;
+        }
+        #para{
+            font-size: 13px;
+            /* color: red; */
+            padding-left: 10px;
+            padding-bottom: -100px
+        }
+        /* #para ::-webkit-resizer */
+        #short{
+            display: flex;
+            float: right;
+            width: 70%;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        #short>div{
+            padding-left: 100px;
+        }
+
+        #shortprice{
+            width: 70%;
+            background-color: white;
+            /* float: right; */
+            
+
+        }
+        .savePrice{
+            /* color:blue; */
+            text-align: center;
+        }
+        .button{
+            text-align: center;
+            padding-bottom: 20px;
+        }
+      
+         @media only screen and (max-width: 800px) and (min-width:400px){
+             #container{
+                grid-template-columns: repeat(2,1fr);
+                /* background-color: red; */
+             }
+         }
+
+    </style>
+</head>
+<body>
+     <div id="short">
+         <div>Views As</div>
+         <div>
+            <select id="shortprice" onchange="hadlePrice">
+    
+                <option value="">Best selling</option>
+                <option value="">feature</option>
+                <option value="">price low to high</option>
+                <option value="">price high to low</option>
+                <option value="">alphabetically A-Z</option>
+                <option value="">alphabetically Z-A</option>
+                <option value="">date old to new</option>
+                <option value="">date new to old</option>
+            </select>
+         </div>
+     </div>
+    <div id="container">
+    </div>
+</body>
+</html>
+
+<script>
+    bestsellerdata= [
+    {
+        img1:"https://cdn.shopify.com/s/files/1/0054/6665/2718/files/Bestsellers-tag.png?v=4831700483207635039",
+        img:"https://cdn.shopify.com/s/files/1/0054/6665/2718/products/Exfoliate-01_1024x1024.jpg?v=1644478556",
+        pname:"Exfoliate Face and Body Scrub Grit, Skin Brightening, De-Tan Removal - 75gm",
+        offprice:"Rs. 275",
+        price:" Rs. 249",
+        save:"(Save Rs. 50)",
+    },
+    {
+        img1:"https://cdn.shopify.com/s/files/1/0054/6665/2718/files/Bestsellers-tag.png?v=4831700483207635039",
+        img:"https://cdn.shopify.com/s/files/1/0054/6665/2718/products/C-GlowFaceWash-01_1024x1024.jpg?v=1645422258",
+        pname:"Vitamin C-Glow Natural Face Wash With Coffee, Neem & Mint, Oil Control, Acne, Brightening & Glow, Men & Women - 100 ml",
+        offprice:"Rs. 249",
+        price:"Rs. 225",
+        save:"(Save Rs. 50)"
+    },
+    {
+        img1:"https://cdn.shopify.com/s/files/1/0054/6665/2718/files/Bestsellers-tag.png?v=4831700483207635039",
+        img:"https://cdn.shopify.com/s/files/1/0054/6665/2718/products/1_edae1af1-bd27-4167-ac83-e06190a4c2db_1024x1024.jpg?v=1644304381",
+        pname:"NicoLips Lip Lightening Scrub For Dark, Dry, Chapped & Damaged Lips Unisex - 20 gm",
+        offprice:"Rs. 450",
+        price:"Rs. 399",
+        save:"(Save Rs. 50)"
+    },
+    {
+        img1:"https://cdn.shopify.com/s/files/1/0054/6665/2718/files/Bestsellers-tag.png?v=4831700483207635039",
+        img:"https://cdn.shopify.com/s/files/1/0054/6665/2718/products/1_d75b9621-23ad-4aef-9120-b4a9d25407c2_1024x1024.jpg?v=1644304085",
+        pname:"EyeLift Under Eye Cream for Dark Circles, Puffy Eyes & Wrinkles, For Men & Women 20 gm",
+        offprice:"Rs. 325",
+        price:"Rs. 285",
+        save:"(Save Rs. 50)"
+    },
+    {
+        img1:"https://cdn.shopify.com/s/files/1/0054/6665/2718/files/Bestsellers-tag.png?v=4831700483207635039",
+        img:"https://cdn.shopify.com/s/files/1/0054/6665/2718/products/CEO-01_4e7b082a-f9f5-4edf-8a34-2f5724b928d0_1024x1024.jpg?v=1632483668",
+        pname:"CEO Men Perfume Office Wear - 100 ml",
+        offprice:"Rs. 999",
+        price:" Rs. 499",
+        save:"(Save Rs. 50)"
+    },
+    {
+        img1:"https://cdn.shopify.com/s/files/1/0054/6665/2718/files/Bestsellers-tag.png?v=4831700483207635039",
+        img:"https://cdn.shopify.com/s/files/1/0054/6665/2718/products/Fresh-01_1024x1024.jpg?v=1632484618",
+        pname:"Fresh Unisex Perfume For Men & Women with Woody Aquatic Scent EDT Fragrance, 100 ml",
+        offprice:"Rs. 999",
+        price:"Rs. 499",
+        save:"(Save Rs. 50)"
+    },
+    {
+        img1:"https://cdn.shopify.com/s/files/1/0054/6665/2718/files/Bestsellers-tag.png?v=4831700483207635039",
+        img:"https://cdn.shopify.com/s/files/1/0054/6665/2718/products/Lavender_1_1024x1024.jpg?v=1620633214",
+        pname:"Lavender Essential Oil For Skin & Hair Care - 15ml Natural Can be Used as Fragrance Oil, Mixed with Beauty Products, Aromatherapy and Home Candle Soap Making",
+        offprice:"Rs. 299",
+        price:" Rs. 249",
+        save:"(Save Rs. 50)"
+    },
+    {
+        img1:"https://cdn.shopify.com/s/files/1/0054/6665/2718/files/Bestsellers-tag.png?v=4831700483207635039",
+        img:"https://cdn.shopify.com/s/files/1/0054/6665/2718/products/Exfoliate_-Feetlove_1024x1024.jpg?v=1608116979",
+        pname:"Foot Care Combo (Exfoliate + FeetLove)",
+        offprice:"Rs. 898 ",
+        price:"Rs. 489",
+        save:"(Save Rs. 50)"
+        
+    },
+    {
+        img1:"https://cdn.shopify.com/s/files/1/0054/6665/2718/files/Bestsellers-tag.png?v=4831700483207635039",
+        img:"https://cdn.shopify.com/s/files/1/0054/6665/2718/products/flaura-01_1024x1024.jpg?v=1632484520",
+        pname:"Flaura Women Perfume Floral, Oriental And Bitter Sweet Fragrance Long Lasting Scent, 100 ml EDP",
+        offprice:"Rs. 999",
+        price:"Rs. 499",
+        save:"(Save Rs. 50)"
+    },
+
+    {
+        img1:"https://cdn.shopify.com/s/files/1/0054/6665/2718/files/Bestsellers-tag.png?v=4831700483207635039",
+        img:"https://cdn.shopify.com/s/files/1/0054/6665/2718/products/For-website-2_1024x1024.png?v=1643885681",
+        pname:"Luxury Perfumes Gift Set for Women - 6x10 ml Mini",
+        offprice:"Rs. 599",
+        price:"Rs. 499",
+        save:"(Save Rs. 50)"
+    },
+    {
+        img1:"https://cdn.shopify.com/s/files/1/0054/6665/2718/files/Bestsellers-tag.png?v=4831700483207635039",
+        img:"https://cdn.shopify.com/s/files/1/0054/6665/2718/products/product-thanking-501_8791ab36-7fed-496f-a413-7f3707a48e4b_1024x1024.jpg?v=1628751789",
+        pname:"Thanking Gift Card Rs. 501",
+        offprice:"",
+        price:"Rs. 501",
+        save:"(Save Rs. 50)"
+    },
+    {
+        img1:"https://cdn.shopify.com/s/files/1/0054/6665/2718/files/Bestsellers-tag.png?v=4831700483207635039",
+        img:"https://cdn.shopify.com/s/files/1/0054/6665/2718/products/product-birthday-501_fd658ea4-67cc-4d7c-b5cf-c49e2821094e_1024x1024.jpg?v=1628752050",
+        pname:"Celebrate Birthdays Gift Card Rs. 501",
+        offprice:"",
+        price:"Rs. 501",
+        save:"(Save Rs. 50)"
+    },
+    
+  
+  
+];
+
+
+bestsellerdata.map(function(elem,index,array){
+    var innerdiv=document.createElement("div");
+
+    var div1=document.createElement("div");
+    var image1=document.createElement("img");
+    image1.setAttribute("src",elem.img1)
+    image1.setAttribute("id","image1")
+    div1.append(image1);
+
+    var Image=document.createElement("img");
+    Image.setAttribute("src",elem.img);
+    Image.setAttribute("id","pic");
+
+    var Pname=document.createElement("p");
+    Pname.setAttribute("id","para")
+    Pname.innerText=elem.pname;
+    // console.log(Pname.length)
+    // console.log(Pname.innerText)
+
+
+    var div2=document.createElement("div");
+    div2.setAttribute("class","price")
+
+    var OffPrice=document.createElement("s")
+    OffPrice.innerText=elem.offprice;
+    
+    var Price=document.createElement("p");
+    Price.innerText=elem.price;
+
+    div2.append(OffPrice,Price);
+
+    var div4=document.createElement("div")
+    div4.setAttribute("class","button")
+
+    var btn=document.createElement("button")
+    btn.innerText="Buy"
+    div4.append(btn)
+    // tnt.setAttribute("class","button")
+
+    var div3=document.createElement("div");
+    div3.setAttribute("class","savePrice")
+    var priceSave=document.createElement("p");
+    priceSave.innerText=elem.save;
+    div3.append(priceSave);
+
+    innerdiv.append(div1,Image,Pname,div2,div3,div4);
+    document.querySelector("#container").append(innerdiv);
+
+})
+
+
+</script>
